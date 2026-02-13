@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hamel Korea Co., LTD — 2026">
+<meta name="description" content="MOQV Brand Guideline 2026 Edition — Logistics Trend Magazine & Newsroom">
+<title>MOQV — Brand Guide 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --white: #FAFAFA;
+    --accent: #FF4D00;
+    --accent-warm: #FF6B2B;
+    --gray-100: #F5F5F5;
+    --gray-200: #E8E8E8;
+    --gray-400: #999999;
+    --gray-600: #666666;
+    --gray-800: #333333;
+    --deep: #1A1A2E;
+    --navy: #16213E;
+    --teal: #0F3460;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .eng { font-family: 'Space Grotesk', sans-serif; }
+  .mono { font-family: 'DM Mono', monospace; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 50%, #0A0A0A 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(255,77,0,0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(15,52,96,0.08) 0%, transparent 50%);
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 20px); }
+  }
+
+  .hero-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(80px, 15vw, 200px);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray-400) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeUp 1.2s ease-out;
+  }
+
+  .hero-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(12px, 1.5vw, 16px);
+    letter-spacing: 0.4em;
+    color: var(--gray-400);
+    margin-top: 16px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1.2s ease-out 0.3s both;
+  }
+
+  .hero-tag {
+    margin-top: 48px;
+    padding: 12px 32px;
+    border: 1px solid rgba(255,77,0,0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1.2s ease-out 0.6s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-dark {
+    background: var(--black);
+  }
+
+  .section-deep {
+    background: linear-gradient(180deg, var(--deep) 0%, var(--black) 100%);
+  }
+
+  .section-full {
+    max-width: 100%;
+    padding: 120px 0;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 48px;
+  }
+
+  .section-title span {
+    color: var(--accent);
+  }
+
+  .desc {
+    font-size: 16px;
+    color: var(--gray-400);
+    line-height: 1.9;
+    max-width: 720px;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gray-800), transparent);
+  }
+
+  /* ===== LOGO CONCEPT ===== */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .logo-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 48px 36px;
+    transition: all 0.4s ease;
+  }
+
+  .logo-card:hover {
+    border-color: rgba(255,77,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(255,77,0,0.05);
+  }
+
+  .logo-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .logo-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .logo-card p {
+    font-size: 14px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+
+  /* Logo Demo */
+  .logo-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .logo-demo-box {
+    aspect-ratio: 16/9;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-demo-box.dark {
+    background: var(--black);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .logo-demo-box.light {
+    background: var(--white);
+  }
+
+  .logo-demo-box.accent {
+    background: var(--accent);
+  }
+
+  .logo-demo-box.navy {
+    background: var(--navy);
+  }
+
+  .logo-demo-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .logo-demo-text.white { color: var(--white); }
+  .logo-demo-text.black { color: var(--black); }
+  .logo-demo-text.orange { color: var(--accent); }
+
+  .logo-demo-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    margin-top: 8px;
+  }
+
+  .logo-demo-corner {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+  }
+
+  /* ===== SLOGAN ===== */
+  .slogan-list {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .slogan-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .slogan-item:hover {
+    background: rgba(255,77,0,0.05);
+  }
+
+  .slogan-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .slogan-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .slogan-text-kr {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-top: 6px;
+  }
+
+  .slogan-badge {
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+
+  .badge-primary {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .badge-alt {
+    border: 1px solid var(--gray-600);
+    color: var(--gray-400);
+  }
+
+  /* ===== COLORS ===== */
+  .color-palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .color-swatch {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .color-swatch-top {
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+
+  .color-swatch-bottom {
+    padding: 20px 16px;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .color-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .color-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gray-400);
+    letter-spacing: 0.1em;
+  }
+
+  .color-use {
+    font-size: 12px;
+    color: var(--gray-600);
+    margin-top: 8px;
+  }
+
+  /* ===== TONE & MANNER ===== */
+  .tone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .tone-card {
+    padding: 40px 32px;
+    border-left: 3px solid var(--accent);
+    background: rgba(255,255,255,0.02);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .tone-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .tone-card p {
+    font-size: 14px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+
+  .tone-do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .tone-do, .tone-dont {
+    padding: 36px 32px;
+    border-radius: 12px;
+  }
+
+  .tone-do {
+    background: rgba(0, 200, 83, 0.05);
+    border: 1px solid rgba(0, 200, 83, 0.15);
+  }
+
+  .tone-dont {
+    background: rgba(255, 77, 0, 0.05);
+    border: 1px solid rgba(255, 77, 0, 0.15);
+  }
+
+  .tone-do h4, .tone-dont h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .tone-do h4 { color: #00C853; }
+  .tone-dont h4 { color: var(--accent); }
+
+  .tone-do li, .tone-dont li {
+    font-size: 14px;
+    color: var(--gray-400);
+    margin-bottom: 12px;
+    list-style: none;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .tone-do li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #00C853;
+  }
+
+  .tone-dont li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* ===== STRATEGY ===== */
+  .strategy-timeline {
+    margin-top: 64px;
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .strategy-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--teal), transparent);
+  }
+
+  .strategy-phase {
+    position: relative;
+    margin-bottom: 64px;
+    padding-left: 32px;
+  }
+
+  .strategy-phase::before {
+    content: '';
+    position: absolute;
+    left: -45px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 20px rgba(255,77,0,0.3);
+  }
+
+  .phase-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .phase-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .phase-desc {
+    font-size: 15px;
+    color: var(--gray-400);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .phase-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .phase-tag {
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--gray-400);
+  }
+
+  /* ===== TARGET ===== */
+  .target-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .target-card {
+    padding: 40px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .target-card:hover {
+    border-color: rgba(255,77,0,0.2);
+  }
+
+  .target-emoji {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+
+  .target-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .target-card p {
+    font-size: 13px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+
+  /* ===== CHANNEL ===== */
+  .channel-table {
+    width: 100%;
+    margin-top: 48px;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+  }
+
+  .channel-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gray-400);
+    text-align: left;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .channel-table td {
+    padding: 20px 24px;
+    font-size: 14px;
+    background: rgba(255,255,255,0.02);
+    color: var(--gray-400);
+    line-height: 1.6;
+  }
+
+  .channel-table td:first-child {
+    border-radius: 8px 0 0 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .channel-table td:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* ===== KPI ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .kpi-card {
+    text-align: center;
+    padding: 36px 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+  }
+
+  .kpi-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .kpi-label {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    padding: 80px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--gray-800);
+    margin-bottom: 16px;
+  }
+
+  .footer p {
+    font-size: 12px;
+    color: var(--gray-600);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+  }
+
+  .hamel-credit {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gray-800);
+    text-align: right;
+    margin-top: 48px;
+    opacity: 0.6;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .section { padding: 80px 24px; }
+    .logo-demo { grid-template-columns: 1fr; }
+    .tone-do-dont { grid-template-columns: 1fr; }
+    .target-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .slogan-item { grid-template-columns: 40px 1fr; gap: 16px; }
+    .slogan-badge { display: none; }
+    .channel-table { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-logo eng">MOQV</div>
+  <div class="hero-sub eng">BRAND GUIDELINE — 2026</div>
+  <div class="hero-tag eng">LOGISTICS TREND MAGAZINE & NEWSROOM</div>
+  <div style="position:absolute; bottom:32px; right:48px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gray-800); opacity:0.5;" class="eng">Generated by Hamel Korea Co., LTD</div>
+</section>
+
+<!-- ===== 01. BRAND IDENTITY ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">01 — BRAND IDENTITY</div>
+  <h2 class="section-title eng">What is <span>MOQV</span>?</h2>
+  <p class="desc">
+    MOQV는 로지스틱스 업계의 트렌드, 인사이트, 그리고 업계 리더들의 이야기를 큐레이션하는 프리미엄 매거진 & 뉴스룸 브랜드입니다.
+    단순한 물류 뉴스가 아닌, 업계의 '이너서클'에서만 공유되던 깊이 있는 관점과 전략을 감각적으로 전달합니다.
+  </p>
+  <br><br>
+  <p class="desc" style="font-size:14px; color: var(--gray-600);">
+    <strong class="eng" style="color:var(--white)">MOQV</strong> = <strong>M</strong>ove with <strong>Q</strong>uality & <strong>V</strong>ision<br>
+    움직임의 퀄리티와 비전 — 물류가 단순한 운반이 아닌, 전략이고 비전이라는 메시지를 담고 있습니다.
+  </p>
+</section>
+
+<!-- ===== 02. LOGO CONCEPT ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">02 — LOGO CONCEPT</div>
+  <h2 class="section-title">로고 <span>컨셉</span> 방향</h2>
+
+  <div class="logo-grid">
+    <div class="logo-card">
+      <div class="logo-card-label eng">DIRECTION A</div>
+      <h3>미니멀 타이포그래피</h3>
+      <p>
+        MOQV 4글자만으로 승부합니다. Space Grotesk 계열의 기하학적 산세리프체를 사용하여
+        Q의 꼬리를 살짝 길게 빼거나, V의 하단을 화살표처럼 변형하여 '전진'과 '방향성'을 암시합니다.
+        아이콘 없이 레터마크만으로 완성되는 고급스러운 접근입니다.
+      </p>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-card-label eng">DIRECTION B</div>
+      <h3>Q → 나침반 모티프</h3>
+      <p>
+        Q의 원형 구조를 나침반으로 변형합니다. Q의 꼬리가 나침반 바늘이 되어
+        방향을 가리키는 형태. 물류의 핵심인 '방향'과 '항해'를 시각적으로 표현하면서도
+        전체적으로 깔끔한 워드마크를 유지합니다.
+      </p>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-card-label eng">DIRECTION C</div>
+      <h3>모노그램 스탬프</h3>
+      <p>
+        MQ를 겹친 모노그램을 메인 심볼로, MOQV 풀 워드마크를 보조로 사용합니다.
+        매거진 표지 상단에 스탬프처럼 찍히는 느낌. 편집장의 서명 같은 권위와
+        이너서클의 배타적 느낌을 줍니다.
+      </p>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-card-label eng">RECOMMENDED ★</div>
+      <h3>Direction A + B 하이브리드</h3>
+      <p>
+        미니멀 타이포를 기본으로 하되, Q 하나만 나침반 모티프로 치환합니다.
+        과하지 않으면서도 물류 정체성이 살아있고, 다양한 사이즈에서 가독성이 유지됩니다.
+        SNS 아바타부터 매거진 표지까지 모든 터치포인트에서 일관된 인상을 줍니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- Logo Application Demo -->
+  <div class="logo-demo">
+    <div class="logo-demo-box dark">
+      <div class="logo-demo-text white eng">MOQV</div>
+      <div class="logo-demo-sub eng" style="color:var(--gray-600)">LOGISTICS INTELLIGENCE</div>
+      <div class="logo-demo-corner eng" style="color:var(--gray-600)">DARK MODE</div>
+    </div>
+    <div class="logo-demo-box light">
+      <div class="logo-demo-text black eng">MOQV</div>
+      <div class="logo-demo-sub eng" style="color:var(--gray-400)">LOGISTICS INTELLIGENCE</div>
+      <div class="logo-demo-corner eng" style="color:var(--gray-400)">LIGHT MODE</div>
+    </div>
+    <div class="logo-demo-box accent">
+      <div class="logo-demo-text white eng">MOQV</div>
+      <div class="logo-demo-sub eng" style="color:rgba(255,255,255,0.6)">LOGISTICS INTELLIGENCE</div>
+      <div class="logo-demo-corner eng" style="color:rgba(255,255,255,0.5)">ACCENT MODE</div>
+    </div>
+    <div class="logo-demo-box navy">
+      <div class="logo-demo-text orange eng">MOQV</div>
+      <div class="logo-demo-sub eng" style="color:var(--gray-400)">LOGISTICS INTELLIGENCE</div>
+      <div class="logo-demo-corner eng" style="color:var(--gray-400)">NAVY MODE</div>
+    </div>
+  </div>
+  <div class="hamel-credit eng">Generated by Hamel Korea Co., LTD — 2026</div>
+</section>
+
+<!-- ===== 03. SLOGAN ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">03 — SLOGAN</div>
+  <h2 class="section-title">슬로건 <span>후보</span></h2>
+  <p class="desc">브랜드의 핵심 메시지를 한 줄에 담은 슬로건 후보입니다. 용도별로 구분했습니다.</p>
+
+  <div class="slogan-list">
+    <div class="slogan-item">
+      <span class="slogan-num eng">01</span>
+      <div>
+        <div class="slogan-text eng">Move the World. Read the Signal.</div>
+        <div class="slogan-text-kr">세계를 움직여라. 시그널을 읽어라.</div>
+      </div>
+      <span class="slogan-badge badge-primary eng">PRIMARY</span>
+    </div>
+
+    <div class="slogan-item">
+      <span class="slogan-num eng">02</span>
+      <div>
+        <div class="slogan-text eng">Where Logistics Meets Intelligence.</div>
+        <div class="slogan-text-kr">물류가 지성을 만나는 곳.</div>
+      </div>
+      <span class="slogan-badge badge-primary eng">PRIMARY</span>
+    </div>
+
+    <div class="slogan-item">
+      <span class="slogan-num eng">03</span>
+      <div>
+        <div class="slogan-text eng">Insight in Motion.</div>
+        <div class="slogan-text-kr">움직임 속의 인사이트.</div>
+      </div>
+      <span class="slogan-badge badge-alt eng">TAGLINE</span>
+    </div>
+
+    <div class="slogan-item">
+      <span class="slogan-num eng">04</span>
+      <div>
+        <div class="slogan-text eng">The Inner Circle of Global Freight.</div>
+        <div class="slogan-text-kr">글로벌 화물의 이너서클.</div>
+      </div>
+      <span class="slogan-badge badge-alt eng">COMMUNITY</span>
+    </div>
+
+    <div class="slogan-item">
+      <span class="slogan-num eng">05</span>
+      <div>
+        <div class="slogan-text eng">Beyond the Container.</div>
+        <div class="slogan-text-kr">컨테이너 너머의 이야기.</div>
+      </div>
+      <span class="slogan-badge badge-alt eng">EDITORIAL</span>
+    </div>
+
+    <div class="slogan-item">
+      <span class="slogan-num eng">06</span>
+      <div>
+        <div class="slogan-text eng">Freight Forward Thinking.</div>
+        <div class="slogan-text-kr">운송을 앞서가는 생각. (Freight Forward + Forward Thinking의 이중 의미)</div>
+      </div>
+      <span class="slogan-badge badge-alt eng">CAMPAIGN</span>
+    </div>
+
+    <div class="slogan-item">
+      <span class="slogan-num eng">07</span>
+      <div>
+        <div class="slogan-text eng">Navigate. Decode. Lead.</div>
+        <div class="slogan-text-kr">항해하라. 해독하라. 이끌어라.</div>
+      </div>
+      <span class="slogan-badge badge-alt eng">MANIFESTO</span>
+    </div>
+  </div>
+  <div class="hamel-credit eng">Generated by Hamel Korea Co., LTD</div>
+</section>
+
+<!-- ===== 04. COLORS ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">04 — COLOR PALETTE</div>
+  <h2 class="section-title">브랜드 <span>컬러</span></h2>
+  <p class="desc">
+    다크 모드를 기본으로, 오렌지 액센트가 시그널처럼 번쩍이는 팔레트입니다.
+    물류의 산업적 견고함과 매거진의 에디토리얼 감각을 동시에 담았습니다.
+  </p>
+
+  <div class="color-palette">
+    <div class="color-swatch">
+      <div class="color-swatch-top" style="background:#0A0A0A; border-bottom:1px solid rgba(255,255,255,0.06);">
+        <span class="mono" style="font-size:11px; color:var(--gray-600)">PRIMARY</span>
+      </div>
+      <div class="color-swatch-bottom">
+        <div class="color-name eng">MOQV Black</div>
+        <div class="color-hex eng">#0A0A0A</div>
+        <div class="color-use">메인 배경, 권위와 깊이</div>
+      </div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="color-swatch-top" style="background:#FF4D00;">
+        <span class="mono" style="font-size:11px; color:rgba(255,255,255,0.7)">ACCENT</span>
+      </div>
+      <div class="color-swatch-bottom">
+        <div class="color-name eng">Signal Orange</div>
+        <div class="color-hex eng">#FF4D00</div>
+        <div class="color-use">CTA, 강조, 시그널 포인트</div>
+      </div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="color-swatch-top" style="background:#FAFAFA;">
+        <span class="mono" style="font-size:11px; color:var(--gray-400)">TEXT</span>
+      </div>
+      <div class="color-swatch-bottom">
+        <div class="color-name eng">Clean White</div>
+        <div class="color-hex eng">#FAFAFA</div>
+        <div class="color-use">본문 텍스트, 라이트 모드 배경</div>
+      </div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="color-swatch-top" style="background:#1A1A2E;">
+        <span class="mono" style="font-size:11px; color:var(--gray-400)">DEPTH</span>
+      </div>
+      <div class="color-swatch-bottom">
+        <div class="color-name eng">Deep Navy</div>
+        <div class="color-hex eng">#1A1A2E</div>
+        <div class="color-use">서브 배경, 카드, 깊이감</div>
+      </div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="color-swatch-top" style="background:#16213E;">
+        <span class="mono" style="font-size:11px; color:var(--gray-400)">SUPPORT</span>
+      </div>
+      <div class="color-swatch-bottom">
+        <div class="color-name eng">Maritime Blue</div>
+        <div class="color-hex eng">#16213E</div>
+        <div class="color-use">해운 모티프, 차트, 인포그래픽</div>
+      </div>
+    </div>
+
+    <div class="color-swatch">
+      <div class="color-swatch-top" style="background:#999999;">
+        <span class="mono" style="font-size:11px; color:var(--white)">NEUTRAL</span>
+      </div>
+      <div class="color-swatch-bottom">
+        <div class="color-name eng">Steel Gray</div>
+        <div class="color-hex eng">#999999</div>
+        <div class="color-use">부제, 캡션, 보조 텍스트</div>
+      </div>
+    </div>
+  </div>
+  <div class="hamel-credit eng">Generated by Hamel Korea Co., LTD</div>
+</section>
+
+<!-- ===== 05. TONE & MANNER ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">05 — TONE & MANNER</div>
+  <h2 class="section-title">톤앤<span>매너</span></h2>
+
+  <div class="tone-grid">
+    <div class="tone-card">
+      <h3 class="eng">Authoritative 권위적</h3>
+      <p>업계 10년차가 쓴 것 같은 깊이. 초보 블로거가 아닌, 현장을 아는 전문가의 시선으로 이야기합니다. 확신 있되 오만하지 않은 톤.</p>
+    </div>
+
+    <div class="tone-card">
+      <h3 class="eng">Sharp 날카로운</h3>
+      <p>군더더기 없는 문장. 하나의 문장이 하나의 인사이트를 전달합니다. 물류는 효율의 산업이듯, 콘텐츠도 효율적으로.</p>
+    </div>
+
+    <div class="tone-card">
+      <h3 class="eng">Insider 인사이더</h3>
+      <p>"우리끼리 하는 얘긴데..." 의 뉘앙스. 업계 사람만 이해할 수 있는 깊이와, 그걸 세련되게 풀어주는 해설이 공존합니다.</p>
+    </div>
+
+    <div class="tone-card">
+      <h3 class="eng">Contemporary 동시대적</h3>
+      <p>물류가 구닥다리라는 편견을 깨는 감각. 테크, 디자인, 비즈니스 트렌드를 물류의 언어로 재해석합니다.</p>
+    </div>
+  </div>
+
+  <div class="tone-do-dont">
+    <div class="tone-do">
+      <h4 class="eng">✓ DO — 이렇게 쓴다</h4>
+      <ul>
+        <li>"2026년 컨테이너 운임은 구조적 전환점에 있다."</li>
+        <li>"상하이발 FEU 운임이 3주 연속 하락 — 이유는 단 하나."</li>
+        <li>"당신이 모르는 사이, 아프리카 항만이 글로벌 물류 지도를 다시 그리고 있다."</li>
+        <li>"이 리포트를 읽고 나면, 다음 분기 전략이 바뀔 것이다."</li>
+      </ul>
+    </div>
+
+    <div class="tone-dont">
+      <h4 class="eng">✗ DON'T — 이렇게 쓰지 않는다</h4>
+      <ul>
+        <li>"물류 산업에 대해 알아봅시다~"</li>
+        <li>"오늘의 물류 뉴스를 전해드립니다."</li>
+        <li>"컨테이너란? 화물을 담는 큰 상자입니다."</li>
+        <li>"많은 관심 부탁드립니다 ^^ 좋아요 구독!"</li>
+      </ul>
+    </div>
+  </div>
+  <div class="hamel-credit eng">Generated by Hamel Korea Co., LTD</div>
+</section>
+
+<!-- ===== 06. MARKET STRATEGY ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">06 — CMO MARKET STRATEGY</div>
+  <h2 class="section-title">시장 접근 <span>전략</span></h2>
+  <p class="desc">
+    CMO 관점에서 MOQV의 시장 진입과 성장 전략을 3단계로 제시합니다.
+    핵심은 "콘텐츠로 이너서클을 만들고, 이너서클이 브랜드를 키운다"는 플라이휠 구조입니다.
+  </p>
+
+  <!-- Target Audience -->
+  <h3 style="font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:600; margin-top:64px; margin-bottom:8px;" class="eng">Target Audience</h3>
+  <p class="desc" style="margin-bottom:0;">MOQV가 공략해야 할 3개 타겟 세그먼트</p>
+
+  <div class="target-grid">
+    <div class="target-card">
+      <div class="target-emoji">🎯</div>
+      <h3 class="eng">Core — 물류 실무자</h3>
+      <p>포워더, 관세사, 선사 영업, 물류센터 관리자. 현장에서 매일 운임표와 BL을 만지는 사람들. 이들의 '출근길 필독 콘텐츠'가 되는 것이 목표.</p>
+    </div>
+
+    <div class="target-card">
+      <div class="target-emoji">🏢</div>
+      <h3 class="eng">Growth — 경영진 & 의사결정자</h3>
+      <p>물류기업 CEO, SCM 임원, 무역회사 대표. 전략적 의사결정에 필요한 인사이트를 소비하는 계층. 프리미엄 콘텐츠의 주 소비자.</p>
+    </div>
+
+    <div class="target-card">
+      <div class="target-emoji">🌱</div>
+      <h3 class="eng">Future — 물류 테크 & 스타트업</h3>
+      <p>물류 SaaS, AI 물류, 라스트마일 스타트업 종사자. 전통 물류와 테크의 교차점에 있는 뉴 플레이어. MOQV의 '동시대적' 톤에 가장 잘 반응할 세그먼트.</p>
+    </div>
+  </div>
+
+  <!-- Strategy Timeline -->
+  <div class="strategy-timeline" style="margin-top:80px;">
+    <div class="strategy-phase">
+      <div class="phase-label eng">PHASE 01 — MONTH 1-3</div>
+      <div class="phase-title">씨드 콘텐츠 & 존재감 확보</div>
+      <div class="phase-desc">
+        론칭 전 3개월은 '소리 없이 강한' 콘텐츠 아카이브를 구축하는 시기입니다.
+        업계 사람들이 "이거 누가 만들지?" 하고 궁금해하게 만드는 것이 목표.
+        주 2회 딥다이브 아티클 + 매일 1개 숏폼 인사이트를 발행합니다.
+      </div>
+      <div class="phase-actions">
+        <span class="phase-tag">LinkedIn 뉴스레터 론칭</span>
+        <span class="phase-tag">인스타그램 카드뉴스</span>
+        <span class="phase-tag">주 2회 딥다이브 아티클</span>
+        <span class="phase-tag">업계 KOL 5인 인터뷰</span>
+        <span class="phase-tag">SEO 최적화 웹사이트</span>
+      </div>
+    </div>
+
+    <div class="strategy-phase">
+      <div class="phase-label eng">PHASE 02 — MONTH 4-8</div>
+      <div class="phase-title">이너서클 형성 & 커뮤니티 빌딩</div>
+      <div class="phase-desc">
+        콘텐츠를 '소비'만 하던 사람들을 '참여'하게 만드는 단계입니다.
+        "MOQV를 읽는 사람" → "MOQV 멤버"로 전환합니다.
+        유료 뉴스레터 구독 모델을 시작하고, 오프라인 밋업을 통해 물리적 커뮤니티를 구축합니다.
+      </div>
+      <div class="phase-actions">
+        <span class="phase-tag">유료 뉴스레터 (프리미엄 티어)</span>
+        <span class="phase-tag">월 1회 오프라인 라운드테이블</span>
+        <span class="phase-tag">MOQV Podcast 론칭</span>
+        <span class="phase-tag">업계 리포트 발행 (분기별)</span>
+        <span class="phase-tag">텔레그램/슬랙 커뮤니티</span>
+      </div>
+    </div>
+
+    <div class="strategy-phase">
+      <div class="phase-label eng">PHASE 03 — MONTH 9-12</div>
+      <div class="phase-title">수익화 & 브랜드 확장</div>
+      <div class="phase-desc">
+        콘텐츠와 커뮤니티를 기반으로 실질적인 수익 모델을 가동합니다.
+        B2B 스폰서십, 컨퍼런스, 교육 프로그램 등 다각화된 수익 구조를 구축하여
+        지속 가능한 미디어 비즈니스로 안착합니다.
+      </div>
+      <div class="phase-actions">
+        <span class="phase-tag">B2B 스폰서드 콘텐츠</span>
+        <span class="phase-tag">연간 컨퍼런스 "MOQV Summit"</span>
+        <span class="phase-tag">물류 교육 프로그램</span>
+        <span class="phase-tag">브랜드 굿즈 & 머천다이즈</span>
+        <span class="phase-tag">글로벌 에디션 확장</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07. CHANNEL STRATEGY ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">07 — CHANNEL STRATEGY</div>
+  <h2 class="section-title">채널별 <span>접근법</span></h2>
+
+  <table class="channel-table">
+    <thead>
+      <tr>
+        <th class="eng">CHANNEL</th>
+        <th class="eng">ROLE</th>
+        <th class="eng">CONTENT TYPE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="eng">LinkedIn</td>
+        <td>메인 허브. 업계 전문가와 의사결정자가 모인 곳. 딥 인사이트와 오피니언 중심.</td>
+        <td>주 3회 롱폼 포스트, 뉴스레터, 인터뷰 클립</td>
+      </tr>
+      <tr>
+        <td class="eng">Instagram</td>
+        <td>비주얼 브랜딩 & 인지도 확장. 물류를 '힙'하게 보여주는 창구.</td>
+        <td>인포그래픽, 데이터 카드뉴스, 현장 사진, 릴스</td>
+      </tr>
+      <tr>
+        <td class="eng">Newsletter</td>
+        <td>로열 유저 확보. 매주 받아보는 '업계 브리핑'. 유료 전환의 핵심 채널.</td>
+        <td>주간 브리핑, 월간 딥다이브, 분기 리포트</td>
+      </tr>
+      <tr>
+        <td class="eng">Podcast</td>
+        <td>인사이더 대화. 업계 리더의 비하인드 스토리와 솔직한 관점.</td>
+        <td>격주 에피소드 30-40분, 인터뷰 & 토론</td>
+      </tr>
+      <tr>
+        <td class="eng">YouTube</td>
+        <td>다큐멘터리 & 해설. 복잡한 물류를 비주얼로 풀어주는 교육 채널.</td>
+        <td>월 2회 다큐 형식 + 주 1회 숏폼 해설</td>
+      </tr>
+      <tr>
+        <td class="eng">Web / App</td>
+        <td>아카이브 & 프리미엄 콘텐츠 허브. 모든 콘텐츠의 최종 도착지.</td>
+        <td>전체 아티클, 데이터 대시보드, 멤버 전용 콘텐츠</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="hamel-credit eng">Generated by Hamel Korea Co., LTD</div>
+</section>
+
+<!-- ===== 08. KPI ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">08 — YEAR 1 KPI TARGET</div>
+  <h2 class="section-title">1년차 <span>핵심 목표</span></h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-num eng">10K+</div>
+      <div class="kpi-label">뉴스레터 구독자</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num eng">500+</div>
+      <div class="kpi-label">유료 멤버십 전환</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num eng">50+</div>
+      <div class="kpi-label">업계 KOL 인터뷰</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num eng">1st</div>
+      <div class="kpi-label">MOQV Summit 개최</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09. COMPETITIVE EDGE ===== -->
+<div class="divider"></div>
+
+<section class="section">
+  <div class="section-label eng">09 — COMPETITIVE POSITIONING</div>
+  <h2 class="section-title">왜 <span>MOQV</span>인가</h2>
+  <p class="desc" style="margin-bottom:48px;">
+    기존 물류 미디어는 '보도'에 집중합니다. MOQV는 '해석'에 집중합니다.
+    뉴스를 전하는 게 아니라, 뉴스 뒤의 구조를 읽어주는 것. 그것이 MOQV의 차별점입니다.
+  </p>
+
+  <div class="logo-grid">
+    <div class="logo-card">
+      <div class="logo-card-label eng">VS 기존 물류 미디어</div>
+      <h3>뉴스 나열 → 인사이트 큐레이션</h3>
+      <p>해운신문, 물류신문 등 기존 매체는 팩트 보도에 충실합니다. MOQV는 "왜 이것이 중요한가", "당신의 비즈니스에 어떤 의미인가"를 해석해줍니다.</p>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-card-label eng">VS 글로벌 매체</div>
+      <h3>한국 물류의 글로벌 목소리</h3>
+      <p>FreightWaves, The Loadstar 등 영문 매체는 한국 시장을 충분히 다루지 않습니다. MOQV는 한국-아시아 물류를 글로벌 맥락에서 해석하는 유일한 매체가 됩니다.</p>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-card-label eng">VS 물류 유튜버</div>
+      <h3>감각 + 깊이의 양립</h3>
+      <p>개인 유튜버의 접근성과 전문 매체의 깊이를 동시에 가집니다. 보기 좋은 비주얼에 읽을 가치가 있는 콘텐츠를 담습니다.</p>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-card-label eng">MOAT — 해자</div>
+      <h3>커뮤니티가 곧 해자</h3>
+      <p>콘텐츠는 복제할 수 있지만, 커뮤니티는 복제할 수 없습니다. MOQV의 이너서클에 속한 업계 리더들의 네트워크 자체가 경쟁 장벽이 됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="divider"></div>
+
+<footer class="footer">
+  <div class="footer-logo eng">MOQV</div>
+  <p class="eng">MOVE WITH QUALITY & VISION</p>
+  <p style="margin-top:8px;" class="eng">BRAND GUIDE v1.0 — 2026 EDITION — CONFIDENTIAL</p>
+  <p style="margin-top:16px; color:var(--gray-600); font-size:11px;" class="eng">Generated by Hamel Korea Co., LTD</p>
+  <p style="margin-top:8px; color:var(--gray-800);">© 2026 MOQV. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
