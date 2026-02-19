@@ -23,6 +23,14 @@ function doLogin(){var id=document.getElementById('loginId').value.trim(),pw=doc
 function doLogout(){session=null;buildNav();go('home')}
 // (이벤트 리스너는 main.js에서 등록)
 
+/* ═══ Refresh indices from weekly data ═══ */
+function refreshIndices(){
+  if(!DB.weekly||!DB.weekly.length)return;
+  var last=DB.weekly[DB.weekly.length-1],prev=DB.weekly.length>1?DB.weekly[DB.weekly.length-2]:last;
+  var map=[{name:'SCFI',i:2},{name:'FBX',i:4},{name:'BDI',i:3},{name:'WCI',i:5},{name:'HRCI',i:6},{name:'USD/KRW',i:7}];
+  DB.indices=map.map(function(m){var v=last[m.i],p=prev[m.i],chg=((v-p)/p*100);return{name:m.name,val:v.toLocaleString(),chg:(chg>=0?'+':'')+chg.toFixed(1)+'%',dir:chg>=0?'up':'dn'}});
+}
+
 function buildNav(){var nl=document.getElementById('navLinks'),nr=document.getElementById('navRight'),mm=document.getElementById('mobileMenu');var items=[].concat(DB.sections);if(isAdmin())items.push({id:'admin',label:'📊 Dashboard'});nl.innerHTML=items.map(function(s){return '<span class="nav-link'+(s.id===currentPage?' active':'')+'" onclick="go(\''+s.id+'\')">'+s.label+'</span>'}).join('');nr.innerHTML=session?'<span class="nav-user eng">🔑 '+session.name+'</span><span id="syncBadge" style="font-family:JetBrains Mono,monospace;font-size:10px;padding:0 8px"></span><span class="nav-btn logout eng" onclick="doLogout()">로그아웃</span>':'<span class="nav-btn login eng" onclick="openLogin()">LOGIN</span><span class="nav-btn subscribe eng">SUBSCRIBE</span>';mm.innerHTML=items.map(function(s){return '<div class="mm-link'+(s.id===currentPage?' active':'')+'" onclick="go(\''+s.id+'\');closeMobile()">'+s.label+'</div>'}).join('')+(session?'<div class="mm-link" style="color:var(--red)" onclick="doLogout();closeMobile()">로그아웃</div>':'<div class="mm-link" style="color:var(--accent)" onclick="openLogin();closeMobile()">🔐 로그인</div>')}
 function buildTicker(){var items=DB.indices.map(function(i){return '<div class="tk-item"><span class="tk-label eng">'+i.name+'</span><span class="tk-val eng">'+i.val+'</span><span class="tk-'+i.dir+' eng">'+(i.dir==='up'?'▲':'▼')+i.chg.replace(/[+-]/,'')+'</span></div>'}).join('<span class="tk-sep">│</span>');document.getElementById('tickerInner').innerHTML=items+items}
 function toggleMobile(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open')}
