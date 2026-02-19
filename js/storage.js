@@ -148,6 +148,14 @@ async function loadData(){
     var rtCfg=await idbGet('config','routes');
     if(arts&&arts.length>0){
       DB.articles=arts;
+      /* ── v6.1 카테고리 마이그레이션 ── */
+      var migrated=false;
+      DB.articles.forEach(function(a){
+        if(a.cat==='quick-take'){a.cat='data-take';migrated=true}
+        if(a.cat==='industry'){a.cat='deep-dive';migrated=true}
+      });
+      if(migrated){console.log('[MOQV] v6.1 category migration applied');await saveArticlesToDB();}
+      /* ── end migration ── */
       DB.weekly=wkCfg?wkCfg.value:SEED_WEEKLY;
       DB.routes=rtCfg?rtCfg.value:SEED_ROUTES;
       STORE_MODE='idb';
@@ -170,6 +178,14 @@ async function loadData(){
     var lsArts=lsGet('articles');
     if(lsArts&&lsArts.length>0){
       DB.articles=lsArts;
+      /* ── v6.1 카테고리 마이그레이션 ── */
+      var mig2=false;
+      DB.articles.forEach(function(a){
+        if(a.cat==='quick-take'){a.cat='data-take';mig2=true}
+        if(a.cat==='industry'){a.cat='deep-dive';mig2=true}
+      });
+      if(mig2){console.log('[MOQV] v6.1 LS category migration');lsSet('articles',DB.articles);}
+      /* ── end migration ── */
       DB.weekly=lsGet('weekly')||SEED_WEEKLY;
       DB.routes=lsGet('routes')||SEED_ROUTES;
       STORE_MODE='ls';
