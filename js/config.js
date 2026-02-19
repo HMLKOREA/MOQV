@@ -58,9 +58,9 @@ const DB = {
   sections: [
     { id: 'home',            label: 'Home' },
     { id: 'market-brief',    label: 'Market Brief' },
+    { id: 'data-take',       label: 'Data Take' },
     { id: 'deep-dive',       label: 'Deep Dive' },
     { id: 'hml-research',    label: 'HML Research' },
-    { id: 'industry',        label: 'Industry' },
     { id: 'opinion-leader',  label: 'Opinion Leader' },
     { id: 'inner-circle',    label: 'Inner Circle' },
     { id: 'archive',         label: 'Archive' }
@@ -73,7 +73,6 @@ const catMeta = {
   'data-take':      { label: 'DATA TAKE',        cls: 'cat-dt',   bg: 'var(--green-soft)',  color: 'var(--green)' },
   'market-brief':   { label: 'MARKET BRIEF',     cls: 'cat-mb',   bg: 'var(--red-soft)',    color: 'var(--red)' },
   'hml-research':   { label: 'HML RESEARCH',     cls: 'cat-hml',  bg: '#F3EEFF',            color: '#6D28D9' },
-  'industry':       { label: 'INDUSTRY',          cls: 'cat-ind',  bg: 'var(--navy)',         color: 'var(--navy)' },
   'opinion-leader': { label: 'OPINION LEADER',   cls: 'cat-ol',   bg: '#FFF7ED',            color: '#EA580C' },
   'inner-circle':   { label: 'INNER CIRCLE',     cls: 'cat-ic',   bg: '#F0FDF4',            color: '#16A34A' }
 };
@@ -84,7 +83,6 @@ const boardDesc = {
   'data-take':      '주간 SCFI 트래킹, 운임 속보, 핵심 지표를 주간 단위로 아카이빙.',
   'market-brief':   '해상·벌크·항공·물류 격주 브리핑.',
   'hml-research':   '하멜코리아 자체 리서치 보고서 및 분석 자료.',
-  'industry':       '컨테이너, 벌크, 항공, 기술 전 분야 추적.',
   'opinion-leader': '마켓 주요 인사 인터뷰, 인사이트 영상, 숏폼 콘텐츠.',
   'inner-circle':   '업계 모임, 오픈마이크, 교육 프로그램. 오프라인·온라인 커뮤니티.',
   'archive':        '2025년 8월 창간호부터 전체 기사.'
