@@ -41,7 +41,7 @@ function renderHome(){
   var h='<section class="hero fade-up"><div><div class="hero-cat eng">'+catMeta[hero.cat].label+'</div><h1 class="hero-title" onclick="goArticle('+hero.id+')">'+hero.title+'</h1><p class="hero-excerpt">'+hero.excerpt+'</p><div class="hero-meta"><span>'+hero.author+'</span><span class="dot"></span><span>'+fmtDate(hero.date)+'</span><span class="dot"></span><span class="mono">'+hero.readMin+'분</span></div></div><div class="hero-img"><div class="hero-img-inner"><div class="hero-big eng">SUEZ</div><div class="hero-sublabel eng">RETURN TO RED SEA · 2026</div></div></div></section>';
   h+='<section class="sec-grid">'+sec3.map(function(a){return '<div class="sec-art"><div class="cat '+catMeta[a.cat].cls+' eng">'+catMeta[a.cat].label+'</div><h3 class="sec-title" onclick="goArticle('+a.id+')">'+a.title+'</h3><p class="sec-excerpt">'+a.excerpt+'</p><div class="sec-meta mono">'+fmtDate(a.date)+' · '+a.readMin+'분</div></div>'}).join('')+'</section>';
   h+='<div style="padding:28px 0;border-bottom:1px solid var(--border)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><span class="sh-label eng">SCFI TREND — '+DB.weekly.length+' WEEKS</span><span style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--text-3)">'+DB.weekly[0][1]+' ~ '+DB.weekly[DB.weekly.length-1][1]+'</span></div>'+spark(scfiD,'#FF4D00',800,100)+'</div>';
-  h+='<div style="padding:28px 0;border-bottom:1px solid var(--border)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><span class="sh-label eng">FREIGHT INDICES</span></div><div class="ds-grid">'+DB.indices.map(function(i){return '<div class="ds-card" onclick="go(\'data\')"><div class="ds-index eng">'+i.name+'</div><div class="ds-val eng">'+i.val+'</div><div class="ds-chg '+i.dir+' eng">'+(i.dir==='up'?'â–²':'â–¼')+' '+i.chg.replace(/[+-]/,'')+'</div></div>'}).join('')+'</div></div>';
+  h+='<div style="padding:28px 0;border-bottom:1px solid var(--border)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><span class="sh-label eng">FREIGHT INDICES</span></div><div class="ds-grid">'+DB.indices.map(function(i){return '<div class="ds-card" onclick="go(\'data-take\')"><div class="ds-index eng">'+i.name+'</div><div class="ds-val eng">'+i.val+'</div><div class="ds-chg '+i.dir+' eng">'+(i.dir==='up'?'â–²':'â–¼')+' '+i.chg.replace(/[+-]/,'')+'</div></div>'}).join('')+'</div></div>';
   if(mbs.length){h+='<div class="sh"><span class="sh-label eng">MARKET BRIEF</span><span class="sh-line"></span><span class="sh-more" onclick="go(\'market-brief\')">전체보기 →</span></div><section class="mb-grid">'+mbs.map(function(a,i){var tg=['urgent','data','market'],ic=['⚠️','📊','💰'];return '<div class="mb-card" onclick="goArticle('+a.id+')"><div class="mb-card-top"><span class="mb-tag '+tg[i%3]+' eng">'+tg[i%3].toUpperCase()+'</span><span class="mb-icon">'+ic[i%3]+'</span></div><div class="mb-card-body"><div class="mb-title">'+a.title+'</div><div class="mb-excerpt">'+a.excerpt+'</div></div><div class="mb-card-footer"><span>'+fmtDate(a.date)+'</span><span class="mb-read eng">'+a.readMin+'분 →</span></div></div>'}).join('')+'</section>'}
   h+='<section class="two-col"><div class="col-main"><div class="sh" style="padding-top:0"><span class="sh-label eng">LATEST</span><span class="sh-line"></span></div>'+latest.map(function(a,i){return '<div class="al-item" onclick="goArticle('+a.id+')"><div class="al-num eng">'+String(i+1).padStart(2,'0')+'</div><div><div class="cat '+catMeta[a.cat].cls+' eng">'+catMeta[a.cat].label+'</div><div class="al-title">'+a.title+'</div><div class="al-meta">'+fmtDate(a.date)+' · '+a.readMin+'분</div></div></div>'}).join('')+'</div><aside class="col-side"><div class="sb-nl"><h3 class="serif">매주 월요일,<br>물류의 맥을 짚다</h3><p>핵심 뉴스와 데이터를 매주 월요일 아침 이메일로.</p><input type="email" placeholder="이메일 주소"><button>무료 구독하기</button><div class="cnt">3,200+ 물류인 구독 중</div></div><div class="sb-sh eng">TRENDING</div>'+trending.map(function(a,i){return '<div class="sb-ti" onclick="goArticle('+a.id+')"><div class="sb-tn eng">'+(i+1)+'</div><div><div class="sb-tt">'+(a.title.length>30?a.title.substring(0,30)+'…':a.title)+'</div><div class="sb-tm">조회 '+(a.views||0).toLocaleString()+'</div></div></div>'}).join('')+'</aside></section>';
   return h;
@@ -75,20 +75,88 @@ function renderArchive(){
   h+='</div>';return h;
 }
 
-function renderData(){
+function renderDataTake(){
   var scfiD=DB.weekly.map(function(w){return w[2]}),bdiD=DB.weekly.map(function(w){return w[3]}),fbxD=DB.weekly.map(function(w){return w[4]}),wciD=DB.weekly.map(function(w){return w[5]}),hrciD=DB.weekly.map(function(w){return w[6]}),krwD=DB.weekly.map(function(w){return w[7]});
-  var h='<div class="board"><div class="board-title serif eng">Data <span>Hub</span></div><div class="board-desc">핵심 물류 지표 주간 트래킹. '+DB.weekly.length+'주간 트렌드.</div>';
+  var arts=DB.articles.filter(function(a){return a.cat==='data-take'&&a.status==='published'}).sort(function(a,b){return b.date.localeCompare(a.date)});
+  var h='<div class="board"><div class="board-title serif eng">Data <span>Take</span></div><div class="board-desc">운임 지표 트래킹 \u00b7 주간 분석 \u00b7 '+DB.weekly.length+'주간 트렌드.</div>';
+
+  /* SECTION 1: GRAPHS */
+  h+='<div class="sh"><span class="sh-label eng">\ud83d\udcca FREIGHT INDEX CHARTS</span><span class="sh-line"></span></div>';
   var idxList=[{name:'SCFI',data:scfiD,color:'#FF4D00'},{name:'BDI',data:bdiD,color:'#16A34A'},{name:'FBX',data:fbxD,color:'#2563EB'},{name:'WCI',data:wciD,color:'#7C3AED'},{name:'HRCI',data:hrciD,color:'#DC2626'},{name:'USD/KRW',data:krwD,color:'#CA8A04'}];
   h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px">';
   idxList.forEach(function(idx){var last=idx.data[idx.data.length-1],prev=idx.data[idx.data.length-2]||last,chg=((last-prev)/prev*100);var dir=chg>=0?'up':'dn';
-    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--text-3)">'+idx.name+'</div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:28px;font-weight:800">'+last.toLocaleString()+'</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--'+(dir==='up'?'green':'red')+')">'+(chg>=0?'â–²':'â–¼')+' '+Math.abs(chg).toFixed(1)+'% w/w</div></div><div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--text-3);text-align:right">HIGH: '+Math.max.apply(null,idx.data).toLocaleString()+'<br>LOW: '+Math.min.apply(null,idx.data).toLocaleString()+'</div></div>'+spark(idx.data,idx.color,300,60)+'</div>'});
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"><div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--text-3)">'+idx.name+'</div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:28px;font-weight:800">'+last.toLocaleString()+'</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--'+(dir==='up'?'green':'red')+')">'+(chg>=0?'\u25b2':'\u25bc')+' '+Math.abs(chg).toFixed(1)+'% w/w</div></div><div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--text-3);text-align:right">HIGH: '+Math.max.apply(null,idx.data).toLocaleString()+'<br>LOW: '+Math.min.apply(null,idx.data).toLocaleString()+'</div></div>'+spark(idx.data,idx.color,300,60)+'</div>'});
   h+='</div>';
-  h+='<div class="sh"><span class="sh-label eng">WEEKLY DATA TABLE</span><span class="sh-line"></span></div><div style="overflow-x:auto;margin-bottom:32px"><table class="rt-table"><thead><tr><th>WEEK</th><th>DATE</th><th>SCFI</th><th>BDI</th><th>FBX</th><th>WCI</th><th>HRCI</th><th>KRW</th></tr></thead><tbody>';
+
+  /* SECTION 2: ANALYSIS ARTICLES */
+  h+='<div class="sh"><span class="sh-label eng">\ud83d\udcdd WEEKLY ANALYSIS</span><span class="sh-line"></span></div>';
+  if(isAdmin())h+='<div class="admin-bar"><div class="admin-bar-label">\ud83d\udd27 \uad00\ub9ac\uc790 ('+arts.length+'\uac74)</div><button class="btn btn-primary btn-sm" onclick="openEditor(null,\'data-take\')">+ \uc0c8 \uae30\uc0ac</button></div>';
+  if(arts.length){
+    var shown=arts.slice(0,12);
+    h+='<div class="board-grid" style="margin-bottom:32px">'+shown.map(function(a){return '<div class="bc"><div class="cat cat-dt eng">DATA TAKE'+(isAdmin()?' <span class="status-badge status-'+a.status+'">'+a.status.toUpperCase()+'</span>':'')+'</div><div class="bc-title" onclick="goArticle('+a.id+')">'+a.title+'</div><div class="bc-excerpt">'+a.excerpt+'</div><div class="bc-footer"><span class="mono">'+fmtDate(a.date)+' \u00b7 '+a.readMin+'\ubd84</span><span class="bc-read eng" onclick="goArticle('+a.id+')">READ \u2192</span></div>'+(isAdmin()?'<div class="bc-admin"><button class="btn btn-edit btn-sm" onclick="event.stopPropagation();openEditor('+a.id+')">\u270f\ufe0f</button><button class="btn btn-danger btn-sm" onclick="event.stopPropagation();delArticle('+a.id+',\'data-take\')">\ud83d\uddd1</button></div>':'')+'</div>'}).join('')+'</div>';
+  }else{
+    h+='<p style="color:var(--text-3);padding:40px 0;text-align:center">\ubd84\uc11d \uae30\uc0ac\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.</p>';
+  }
+
+  /* SECTION 3: DATA TABLE */
+  h+='<div class="sh"><span class="sh-label eng">\ud83d\udccb WEEKLY DATA TABLE</span><span class="sh-line"></span></div><div style="overflow-x:auto;margin-bottom:32px"><table class="rt-table"><thead><tr><th>WEEK</th><th>DATE</th><th>SCFI</th><th>BDI</th><th>FBX</th><th>WCI</th><th>HRCI</th><th>KRW</th></tr></thead><tbody>';
   DB.weekly.slice().reverse().forEach(function(w){h+='<tr><td class="mono">'+w[0]+'</td><td class="mono" style="font-size:11px">'+w[1]+'</td><td class="mono" style="font-weight:700">'+w[2].toLocaleString()+'</td><td class="mono">'+w[3].toLocaleString()+'</td><td class="mono">'+w[4].toLocaleString()+'</td><td class="mono">'+w[5].toLocaleString()+'</td><td class="mono">'+w[6].toLocaleString()+'</td><td class="mono">'+w[7].toLocaleString()+'</td></tr>'});
   h+='</tbody></table></div>';
-  h+='<div class="sh"><span class="sh-label eng">ROUTE RATES</span><span class="sh-line"></span></div>';
+  h+='<div class="sh"><span class="sh-label eng">\ud83d\udea2 ROUTE RATES</span><span class="sh-line"></span></div>';
   Object.keys(DB.routes).sort().reverse().forEach(function(wk){var rates=DB.routes[wk];var wd=DB.weekly.find(function(w){return w[0]===wk});
-    h+='<div style="margin-bottom:20px"><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--accent);margin-bottom:8px">'+wk+' · 기준: '+(wd?wd[1]:'N/A')+'</div><table class="rt-table"><thead><tr><th>ROUTE</th><th>RATE</th></tr></thead><tbody>'+rates.map(function(r){return '<tr><td>'+r[0]+'</td><td class="mono" style="font-weight:600">'+r[1]+'</td></tr>'}).join('')+'</tbody></table></div>'});
+    h+='<div style="margin-bottom:20px"><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--accent);margin-bottom:8px">'+wk+' \u00b7 \uae30\uc900: '+(wd?wd[1]:'N/A')+'</div><table class="rt-table"><thead><tr><th>ROUTE</th><th>RATE</th></tr></thead><tbody>'+rates.map(function(r){return '<tr><td>'+r[0]+'</td><td class="mono" style="font-weight:600">'+r[1]+'</td></tr>'}).join('')+'</tbody></table></div>'});
+  h+='</div>';return h;
+}
+
+/* ═══ Opinion Leader ═══ */
+function renderOpinionLeader(){
+  var arts=DB.articles.filter(function(a){return a.cat==='opinion-leader'}).sort(function(a,b){return b.date.localeCompare(a.date)});
+  var pub=isAdmin()?arts:arts.filter(function(a){return a.status==='published'});
+  var h='<div class="board"><div class="board-title serif eng">Opinion <span>Leader</span></div>';
+  h+='<div class="board-desc">\ub9c8\ucf13 \uc8fc\uc694 \uc778\uc0ac\ub4e4\uc758 \uc778\ud130\ubdf0, \uc778\uc0ac\uc774\ud2b8 \uc601\uc0c1, \uc20f\ud3fc \ucf58\ud150\uce20.</div>';
+  if(isAdmin()){h+='<div class="admin-bar"><div class="admin-bar-label">\ud83d\udd27 \uad00\ub9ac\uc790 ('+pub.length+'\uac74)</div><button class="btn btn-primary btn-sm" onclick="openEditor(null,\'opinion-leader\')">+ \uc0c8 \ucf58\ud150\uce20</button></div>';}
+  if(pub.length){
+    h+='<div class="board-grid">'+pub.map(function(a){return '<div class="bc"><div class="cat cat-ol eng">OPINION LEADER'+(isAdmin()?' <span class="status-badge status-'+a.status+'">'+a.status.toUpperCase()+'</span>':'')+'</div><div class="bc-title" onclick="goArticle('+a.id+')">'+a.title+'</div><div class="bc-excerpt">'+a.excerpt+'</div><div class="bc-footer"><span class="mono">'+fmtDate(a.date)+' \u00b7 '+a.readMin+'\ubd84</span><span class="bc-read eng" onclick="goArticle('+a.id+')">READ \u2192</span></div>'+(isAdmin()?'<div class="bc-admin"><button class="btn btn-edit btn-sm" onclick="event.stopPropagation();openEditor('+a.id+')">\u270f\ufe0f</button><button class="btn btn-danger btn-sm" onclick="event.stopPropagation();delArticle('+a.id+',\'opinion-leader\')">\ud83d\uddd1</button></div>':'')+'</div>'}).join('')+'</div>';
+  }else{
+    h+='<div style="text-align:center;padding:80px 0">';
+    h+='<div style="font-size:64px;margin-bottom:20px">\ud83c\udf99\ufe0f</div>';
+    h+='<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;margin-bottom:12px">Coming Soon</div>';
+    h+='<div style="color:var(--text-2);max-width:480px;margin:0 auto;line-height:1.8;font-size:14px">';
+    h+='\ud574\uc6b4\u00b7\ubb3c\ub958 \uc5c5\uacc4 \ub9ac\ub354\ub4e4\uc758 \uc778\ud130\ubdf0\uc640 \uc778\uc0ac\uc774\ud2b8\ub97c \uc601\uc0c1\uc73c\ub85c \ub9cc\ub098\ubcf4\uc138\uc694.<br>';
+    h+='YouTube \uc601\uc0c1, \uc20f\ud3fc \ucf58\ud150\uce20, \ud31f\uce90\uc2a4\ud2b8 \ub4f1 \ub2e4\uc591\ud55c \ud3ec\ub9f7\uc73c\ub85c \uc900\ube44 \uc911\uc785\ub2c8\ub2e4.';
+    h+='</div>';
+    h+='<div style="display:flex;gap:16px;justify-content:center;margin-top:32px">';
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83c\udfac</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">VIDEO</div><div style="font-size:11px;color:var(--text-3)">\uc778\ud130\ubdf0 \u00b7 \ud1a0\ub860</div></div>';
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83d\udcf1</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">SHORT</div><div style="font-size:11px;color:var(--text-3)">\uc20f\ud3fc \u00b7 \ud074\ub9bd</div></div>';
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83c\udfa7</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">PODCAST</div><div style="font-size:11px;color:var(--text-3)">\uc74c\uc131 \u00b7 \ub300\ub2f4</div></div>';
+    h+='</div></div>';
+  }
+  h+='</div>';return h;
+}
+
+/* ═══ Inner Circle ═══ */
+function renderInnerCircle(){
+  var arts=DB.articles.filter(function(a){return a.cat==='inner-circle'}).sort(function(a,b){return b.date.localeCompare(a.date)});
+  var pub=isAdmin()?arts:arts.filter(function(a){return a.status==='published'});
+  var h='<div class="board"><div class="board-title serif eng">Inner <span>Circle</span></div>';
+  h+='<div class="board-desc">\uc5c5\uacc4 \ubaa8\uc784, \uc624\ud508\ub9c8\uc774\ud06c, \uad50\uc721 \ud504\ub85c\uadf8\ub7a8. \uc624\ud504\ub77c\uc778\u00b7\uc628\ub77c\uc778 \ucee4\ubba4\ub2c8\ud2f0.</div>';
+  if(isAdmin()){h+='<div class="admin-bar"><div class="admin-bar-label">\ud83d\udd27 \uad00\ub9ac\uc790 ('+pub.length+'\uac74)</div><button class="btn btn-primary btn-sm" onclick="openEditor(null,\'inner-circle\')">+ \uc0c8 \uc774\ubca4\ud2b8</button></div>';}
+  if(pub.length){
+    h+='<div class="board-grid">'+pub.map(function(a){return '<div class="bc"><div class="cat cat-ic eng">INNER CIRCLE'+(isAdmin()?' <span class="status-badge status-'+a.status+'">'+a.status.toUpperCase()+'</span>':'')+'</div><div class="bc-title" onclick="goArticle('+a.id+')">'+a.title+'</div><div class="bc-excerpt">'+a.excerpt+'</div><div class="bc-footer"><span class="mono">'+fmtDate(a.date)+' \u00b7 '+a.readMin+'\ubd84</span><span class="bc-read eng" onclick="goArticle('+a.id+')">READ \u2192</span></div>'+(isAdmin()?'<div class="bc-admin"><button class="btn btn-edit btn-sm" onclick="event.stopPropagation();openEditor('+a.id+')">\u270f\ufe0f</button><button class="btn btn-danger btn-sm" onclick="event.stopPropagation();delArticle('+a.id+',\'inner-circle\')">\ud83d\uddd1</button></div>':'')+'</div>'}).join('')+'</div>';
+  }else{
+    h+='<div style="text-align:center;padding:80px 0">';
+    h+='<div style="font-size:64px;margin-bottom:20px">\ud83e\udd1d</div>';
+    h+='<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;margin-bottom:12px">Coming Soon</div>';
+    h+='<div style="color:var(--text-2);max-width:480px;margin:0 auto;line-height:1.8;font-size:14px">';
+    h+='\ud574\uc6b4\u00b7\ubb3c\ub958 \uc804\ubb38\uac00\ub4e4\uc774 \ubaa8\uc774\ub294 \ud504\ub9ac\ubbf8\uc5c4 \ucee4\ubba4\ub2c8\ud2f0\ub97c \uc900\ube44\ud558\uace0 \uc788\uc2b5\ub2c8\ub2e4.<br>';
+    h+='\uc624\ud504\ub77c\uc778 \ubaa8\uc784, \uc628\ub77c\uc778 \uc138\ubbf8\ub098, \uc624\ud508\ub9c8\uc774\ud06c \ub4f1 \ub2e4\uc591\ud55c \ud504\ub85c\uadf8\ub7a8\uc774 \uacf7 \uc2dc\uc791\ub429\ub2c8\ub2e4.';
+    h+='</div>';
+    h+='<div style="display:flex;gap:16px;justify-content:center;margin-top:32px">';
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83c\udfe2</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">MEETUP</div><div style="font-size:11px;color:var(--text-3)">\uc624\ud504\ub77c\uc778 \ubaa8\uc784</div></div>';
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83c\udfa4</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">OPEN MIC</div><div style="font-size:11px;color:var(--text-3)">\uc8fc\uc694 \uc778\uc0ac \ubc1c\ud45c</div></div>';
+    h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83d\udcda</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">EDUCATION</div><div style="font-size:11px;color:var(--text-3)">\uad50\uc721 \u00b7 \uc138\ubbf8\ub098</div></div>';
+    h+='</div></div>';
+  }
   h+='</div>';return h;
 }
 

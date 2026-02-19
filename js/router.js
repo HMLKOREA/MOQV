@@ -11,7 +11,7 @@
  * ═══════════════════════════════════════════════════════ */
 
 /* ═══ Router ═══ */
-function go(p){closeMobile();currentPage=p;boardPage=1;if(p!=='archive')archiveFilter=null;buildNav();var app=document.getElementById('app');if(p==='admin'&&isAdmin())app.innerHTML=renderAdmin();else if(p==='admin'){openLogin();return}else if(p==='data')app.innerHTML=renderData();else if(p==='hml-research'){renderResearch()}else if(p==='home')app.innerHTML=renderHome();else if(p==='archive')app.innerHTML=renderArchive();else app.innerHTML=renderBoard(p);window.scrollTo({top:document.querySelector('.content').offsetTop-70,behavior:'smooth'});anim()}
+function go(p){closeMobile();currentPage=p;boardPage=1;if(p!=='archive')archiveFilter=null;buildNav();var app=document.getElementById('app');if(p==='admin'&&isAdmin())app.innerHTML=renderAdmin();else if(p==='admin'){openLogin();return}else if(p==='data-take')app.innerHTML=renderDataTake();else if(p==='hml-research'){renderResearch()}else if(p==='opinion-leader')app.innerHTML=renderOpinionLeader();else if(p==='inner-circle')app.innerHTML=renderInnerCircle();else if(p==='home')app.innerHTML=renderHome();else if(p==='archive')app.innerHTML=renderArchive();else app.innerHTML=renderBoard(p);window.scrollTo({top:document.querySelector('.content').offsetTop-70,behavior:'smooth'});anim()}
 function goArticle(id){closeMobile();renderArticleView(id)}
 function filterMonth(m){archiveFilter=m;currentPage='archive';boardPage=1;buildNav();document.getElementById('app').innerHTML=renderArchive();window.scrollTo({top:document.querySelector('.content').offsetTop-70,behavior:'smooth'});anim()}
 
