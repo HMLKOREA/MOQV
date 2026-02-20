@@ -73,8 +73,8 @@ function renderArchive(){
   var filtered=archiveFilter?arts.filter(function(a){return a.date.startsWith(archiveFilter)}):arts;
   var months={};filtered.forEach(function(a){var m=a.date.substring(0,7);if(!months[m])months[m]=[];months[m].push(a)});
   var sortedM=Object.keys(months).sort().reverse();
-  var mn={'2026-02':'2026ë…" 2ì›"','2026-01':'2026ë…" 1ì›"','2025-12':'2025ë…" 12ì›"','2025-11':'2025ë…" 11ì›"','2025-10':'2025ë…" 10ì›"','2025-09':'2025ë…" 9ì›"','2025-08':'2025ë…" 8ì›"'};
-  var h='<div class="board"><div class="board-title serif eng"><span>Archive</span></div><div class="board-desc">ì "ì²´ '+arts.length+'ê±´.</div>';
+  var mn={'2026-02':'2026년 2월','2026-01':'2026년 1월','2025-12':'2025년 12월','2025-11':'2025년 11월','2025-10':'2025년 10월','2025-09':'2025년 9월','2025-08':'2025년 8월'};
+  var h='<div class="board"><div class="board-title serif eng"><span>Archive</span></div><div class="board-desc">ì "ì²´ '+arts.length+'건.</div>';
   var allM=['2026-02','2026-01','2025-12','2025-11','2025-10','2025-09','2025-08'];
   h+='<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px"><span class="pg-btn'+(archiveFilter?'':' active')+'" onclick="archiveFilter=null;go(\'archive\')">ì "ì²´ ('+arts.length+')</span>';
   allM.forEach(function(m){var cnt=arts.filter(function(a){return a.date.startsWith(m)}).length;if(cnt)h+='<span class="pg-btn'+(archiveFilter===m?' active':'')+'" onclick="filterMonth(\''+m+'\')">'+(mn[m]||m)+' ('+cnt+')</span>'});
