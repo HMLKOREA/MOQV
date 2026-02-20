@@ -130,7 +130,7 @@ function renderOpinionLeader(){
     h+='<div style="font-size:64px;margin-bottom:20px">\ud83c\udf99\ufe0f</div>';
     h+='<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;margin-bottom:12px">Coming Soon</div>';
     h+='<div style="color:var(--text-2);max-width:480px;margin:0 auto;line-height:1.8;font-size:14px">';
-    h+='\ud574\uc6b4\u00b7\ubb3c\ub958 \uc5c5\uacc4 \ub9ac\ub354\ub4e4\uc758 \uc778\ud130\ubdf0\uc640 \uc778\uc0ac\uc774\ud2b8\ub97c \uc601\uc0c1\uc73c\ub85c \ub9cc\ub098\ubcf4\uc138\uc694.<br>';
+    h+='\ud574\uc6b4 \ubb3c\ub958 \uc5c5\uacc4 \ub9ac\ub354\ub4e4\uc758 \uc778\ud130\ubdf0\uc640 \uc778\uc0ac\uc774\ud2b8\ub97c \uc601\uc0c1\uc73c\ub85c \ub9cc\ub098\ubcf4\uc138\uc694.<br>';
     h+='YouTube \uc601\uc0c1, \uc20f\ud3fc \ucf58\ud150\uce20, \ud31f\uce90\uc2a4\ud2b8 \ub4f1 \ub2e4\uc591\ud55c \ud3ec\ub9f7\uc73c\ub85c \uc900\ube44 \uc911\uc785\ub2c8\ub2e4.';
     h+='</div>';
     h+='<div style="display:flex;gap:16px;justify-content:center;margin-top:32px">';
@@ -156,8 +156,8 @@ function renderInnerCircle(){
     h+='<div style="font-size:64px;margin-bottom:20px">\ud83e\udd1d</div>';
     h+='<div style="font-family:Playfair Display,serif;font-size:24px;font-weight:700;margin-bottom:12px">Coming Soon</div>';
     h+='<div style="color:var(--text-2);max-width:480px;margin:0 auto;line-height:1.8;font-size:14px">';
-    h+='\ud574\uc6b4\u00b7\ubb3c\ub958 \uc804\ubb38\uac00\ub4e4\uc774 \ubaa8\uc774\ub294 \ud504\ub9ac\ubbf8\uc5c4 \ucee4\ubba4\ub2c8\ud2f0\ub97c \uc900\ube44\ud558\uace0 \uc788\uc2b5\ub2c8\ub2e4.<br>';
-    h+='\uc624\ud504\ub77c\uc778 \ubaa8\uc784, \uc628\ub77c\uc778 \uc138\ubbf8\ub098, \uc624\ud508\ub9c8\uc774\ud06c \ub4f1 \ub2e4\uc591\ud55c \ud504\ub85c\uadf8\ub7a8\uc774 \uacf7 \uc2dc\uc791\ub429\ub2c8\ub2e4.';
+    h+='\ud574\uc6b4 \ubb3c\ub958 \uc804\ubb38\uac00\ub4e4\uc774 \ubaa8\uc774\ub294 \ud504\ub9ac\ubbf8\uc5c4 \ucee4\ubba4\ub2c8\ud2f0\ub97c \uc900\ube44\ud558\uace0 \uc788\uc2b5\ub2c8\ub2e4.<br>';
+    h+='\uc624\ud504\ub77c\uc778 \ubaa8\uc784, \uc628\ub77c\uc778 \uc138\ubbf8\ub098, \uc624\ud508\ub9c8\uc774\ud06c \ub4f1 \ub2e4\uc591\ud55c \ud504\ub85c\uadf8\ub7a8\uc774 \uace7 \uc2dc\uc791\ub429\ub2c8\ub2e4.';
     h+='</div>';
     h+='<div style="display:flex;gap:16px;justify-content:center;margin-top:32px">';
     h+='<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:20px 28px;text-align:center"><div style="font-size:28px;margin-bottom:8px">\ud83c\udfe2</div><div style="font-family:JetBrains Mono,monospace;font-size:11px;font-weight:700">MEETUP</div><div style="font-size:11px;color:var(--text-3)">\uc624\ud504\ub77c\uc778 \ubaa8\uc784</div></div>';
