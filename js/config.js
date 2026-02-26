@@ -48,11 +48,11 @@ const DB = {
   weekly: [],
   routes: {},
   indices: [
-    { name: 'SCFI',    val: '1,247', chg: '-3.2%', dir: 'dn' },
-    { name: 'FBX',     val: '1,680', chg: '-3.4%', dir: 'dn' },
-    { name: 'BDI',     val: '1,523', chg: '+4.1%', dir: 'up' },
-    { name: 'WCI',     val: '1,690', chg: '-4.0%', dir: 'dn' },
-    { name: 'HRCI',    val: '892',   chg: '-5.7%', dir: 'dn' },
+    { name: 'SCFI',    val: '1,247', chg: '-1.2%', dir: 'dn' },
+    { name: 'FBX',     val: '1,680', chg: '-2.1%', dir: 'dn' },
+    { name: 'BDI',     val: '2,112', chg: '+0.8%', dir: 'up' },
+    { name: 'WCI',     val: '1,919', chg: '-1.0%', dir: 'dn' },
+    { name: 'HRCI',    val: '892',   chg: '-1.3%', dir: 'dn' },
     { name: 'USD/KRW', val: '1,438', chg: '-0.3%', dir: 'dn' }
   ],
   sections: [
